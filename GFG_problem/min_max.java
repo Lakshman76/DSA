@@ -1,4 +1,4 @@
-// Question - https://www.geeksforgeeks.org/maximum-and-minimum-in-an-array/
+// Question link - https://www.geeksforgeeks.org/maximum-and-minimum-in-an-array/
 
 // solution - 
 
