@@ -7,6 +7,9 @@ public class Solution {
 
 /****************** Optimal Approach ********************/
 
+        // time = O(n)
+        // space = O(1)
+
         for (int i = 0; i < n-1; i++) {
             if(a[i] > a[i+1]){
                 return 0;
