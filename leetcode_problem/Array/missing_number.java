@@ -6,6 +6,7 @@ class Solution {
     public int missingNumber(int[] nums) {
 
         // 1st approach
+        
         // HashMap<Integer, Integer> map = new HashMap<>();
         // for(int i=0; i < nums.length; i++){
         //     map.put(nums[i], i);
@@ -29,6 +30,7 @@ class Solution {
         // return (expectedSum - actualSum);
 
         // using XOR 
+
         int missingElement = nums.length;
         
         for(int i=0; i<nums.length; i++){
