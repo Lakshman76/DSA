@@ -19,6 +19,23 @@ public class SearchInSorted {
         System.out.println("Not found");
     }
 
+    // Top right
+    public static void stairCaseTR(int matrix[][], int key) {
+        int row = 0;
+        int col = matrix[0].length - 1;
+        while (row < matrix.length && col >= 0) {
+            if (matrix[row][col] == key) {
+                System.out.println("Found at (" + row + ", " + col + ")");
+                return;
+            } else if (key < matrix[row][col]) {
+                col--;
+            } else {
+                row++;
+            }
+        }
+        System.out.println("Not found");
+    }
+
     public static void main(String[] args) {
         int matrix[][] = {
                 { 1, 2, 3, 4 },
@@ -27,6 +44,8 @@ public class SearchInSorted {
                 { 13, 14, 15, 16 }
         };
         int key = 6;
-        binarySearch(matrix, key);
+        // binarySearch(matrix, key);
+        stairCaseTR(matrix, key);
+
     }
 }
