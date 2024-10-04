@@ -7,17 +7,23 @@ public class ShortestPath {
             // EAST
             if (dir == 'E') {
                 x++;
-            } else if (dir == 'W') {
+            }
+            // WEST
+            else if (dir == 'W') {
                 x--;
-            } else if (dir == 'N') {
+            }
+            // NORTH
+            else if (dir == 'N') {
                 y++;
-            } else {
+            }
+            // South
+            else {
                 y--;
             }
         }
         int x2 = x * x;
-        int y2 = y*y;
-        return (float)Math.sqrt(x2 + y2);
+        int y2 = y * y;
+        return (float) Math.sqrt(x2 + y2);
     }
 
     public static void main(String[] args) {
