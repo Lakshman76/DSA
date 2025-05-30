@@ -7,31 +7,29 @@
 
 import java.util.*;
 class CalculateElectricityBill {
+    public static int calculateBill(int totalUnit){
+        int cost = 10;
+        int unit = totalUnit;
+        int result = 0;
+        while(unit > 0){
+            unit = totalUnit - 100;
+            if(unit <= 0){
+                result += (totalUnit * cost);
+            } else {
+                result += (100 * cost);
+                cost += 5;
+                totalUnit -= 100;
+            }
+            if(cost == 25){
+                return result + (totalUnit * cost);
+            }
+        }
+        return result;
+    }
     public static void main(String args[]){
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter Electricity Bill \t");
         int totalUnit = sc.nextInt();
-        if(totalUnit > 0 && totalUnit < 100){
-            totalUnit *= 10;
-        } else if(totalUnit >= 100 && totalUnit < 200){
-            int unit = 100 * 10;
-            totalUnit -= 100;
-            totalUnit *= 15;
-            totalUnit += unit;
-        } else if(totalUnit >= 200 && totalUnit < 300){
-            int unit1 = 100 * 10;
-            int unit2 = 100 * 15;
-            totalUnit -= 200;
-            totalUnit *= 20;
-            totalUnit += (unit1 + unit2);
-        } else if(totalUnit >= 300){
-            int unit1 = 100 * 10;
-            int unit2 = 100 * 15;
-            int unit3 = 100 * 20;
-            totalUnit -= 300;
-            totalUnit *= 25;
-            totalUnit += (unit1 + unit2 + unit3);
-        }
-        System.out.println("Total Bill = "+totalUnit);
+        System.out.println("Total Bill = " + calculateBill(totalUnit));
     }
 }
