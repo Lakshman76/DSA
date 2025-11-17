@@ -3,7 +3,7 @@ import java.util.List;
 
 public class LetterCasePermutation {
     static List<String> letterCasePermutation(String p, String up, String s) {
-        if (p.length() == s.length()) {
+        if (up.isEmpty()) {
             List<String> li = new ArrayList<>();
             li.add(p);
             return li;
