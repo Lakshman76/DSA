@@ -4,7 +4,7 @@ import java.util.List;
 
 public class PermutationOfArray {
     static List<List<Integer>> permutation(List<Integer> p, int[] up, int[] nums) {
-        if (p.size() == nums.length) {
+        if (up.length == 0) {
             List<List<Integer>> li = new ArrayList<>();
             li.add(new ArrayList<>(p));
             return li;
@@ -20,7 +20,7 @@ public class PermutationOfArray {
     }
 
     public static void main(String[] args) {
-        int[] nums = { 0, 1 };
+        int[] nums = { 1, 2, 3 };
         List<List<Integer>> ans = permutation(new ArrayList<>(), nums, nums);
         for (List<Integer> list : ans) {
             System.out.println(list);
