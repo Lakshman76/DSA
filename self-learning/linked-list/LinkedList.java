@@ -34,6 +34,23 @@ public class LinkedList {
         head = newNode;
     }
 
+    void insertAtIndex(int data, int idx){
+        if (idx == 0) {
+            insertFIrst(data);
+            return;
+        }
+        Node newNode = new Node(data);
+        int count = 0;
+        Node temp = head;
+        while (count != idx - 1) {
+            temp = temp.next;
+            count++;
+        }
+        Node nextNode = temp.next;
+        temp.next = newNode;
+        newNode.next = nextNode;
+    }
+
     void display() {
         Node temp = head;
         while (temp != null) {
@@ -46,14 +63,17 @@ public class LinkedList {
 
     public static void main(String[] args) {
         LinkedList ll = new LinkedList();
-        // ll.insert(10);
-        // ll.insert(20);
-        // ll.insert(30);
+        ll.insert(10);
+        ll.insert(20);
+        ll.insert(30);
         // ll.display();
 
         ll.insertFIrst(15);
         ll.insertFIrst(25);
         ll.insertFIrst(35);
+        ll.display();
+
+        ll.insertAtIndex(12, 3);
         ll.display();
     }
 }
