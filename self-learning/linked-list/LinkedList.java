@@ -56,6 +56,23 @@ public class LinkedList {
         head = head.next;
         return val;
     }
+
+    int removeLast() {
+        int val;
+        if (head.next == null) {
+            val = head.data;
+            head = null;
+            return val;
+        }
+        Node temp = head;
+        while (temp.next.next != null) {
+            temp = temp.next;
+        }
+        val = temp.next.data;
+        temp.next = null;
+        return val;
+    }
+
     void display() {
         Node temp = head;
         while (temp != null) {
@@ -79,9 +96,12 @@ public class LinkedList {
         // ll.display();
 
         ll.insertAtIndex(12, 3);
+        // ll.display();
+
+        // System.out.println(ll.removeFirst());
         ll.display();
 
-        System.out.println(ll.removeFirst());
+        System.out.println(ll.removeLast());
         ll.display();
     }
 }
