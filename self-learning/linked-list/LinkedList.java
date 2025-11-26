@@ -51,6 +51,11 @@ public class LinkedList {
         newNode.next = nextNode;
     }
 
+    int removeFirst(){
+        int val = head.data;
+        head = head.next;
+        return val;
+    }
     void display() {
         Node temp = head;
         while (temp != null) {
@@ -71,9 +76,12 @@ public class LinkedList {
         ll.insertFIrst(15);
         ll.insertFIrst(25);
         ll.insertFIrst(35);
-        ll.display();
+        // ll.display();
 
         ll.insertAtIndex(12, 3);
+        ll.display();
+
+        System.out.println(ll.removeFirst());
         ll.display();
     }
 }
