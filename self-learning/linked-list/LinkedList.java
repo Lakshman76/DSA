@@ -73,6 +73,21 @@ public class LinkedList {
         return val;
     }
 
+    int remove(int idx) {
+        if (idx == 0) {
+            return removeFirst();
+        }
+        int count = 0;
+        Node temp = head;
+        while (count != idx - 1) {
+            temp = temp.next;
+            count++;
+        }
+        Node nextNode = temp.next.next;
+        int val = temp.next.data;
+        temp.next = nextNode;
+        return val;
+    }
     void display() {
         Node temp = head;
         while (temp != null) {
@@ -99,9 +114,12 @@ public class LinkedList {
         // ll.display();
 
         // System.out.println(ll.removeFirst());
+        // ll.display();
+
+        // System.out.println(ll.removeLast());
         ll.display();
 
-        System.out.println(ll.removeLast());
+        System.out.println(ll.remove(3));
         ll.display();
     }
 }
