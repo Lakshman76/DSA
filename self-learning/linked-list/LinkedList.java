@@ -88,6 +88,17 @@ public class LinkedList {
         temp.next = nextNode;
         return val;
     }
+
+    Node find(int val) {
+        Node temp = head;
+        while (temp.next != null) {
+            if (temp.data == val) {
+                return temp;
+            }
+            temp = temp.next;
+        }
+        return null;
+    }
     void display() {
         Node temp = head;
         while (temp != null) {
@@ -117,9 +128,11 @@ public class LinkedList {
         // ll.display();
 
         // System.out.println(ll.removeLast());
+        // ll.display();
+
+        // System.out.println(ll.remove(3));
         ll.display();
 
-        System.out.println(ll.remove(3));
-        ll.display();
+        System.out.println(ll.find(17));
     }
 }
