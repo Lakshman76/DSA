@@ -24,6 +24,27 @@ public class CircularLL {
         tail = newNode;
     }
 
+    // Delete given node
+    void delete(int val) {
+        if (head == null) {
+            return;
+        }
+        if (head.data == val) {
+            head = head.next;
+            tail.next = head;
+            return;
+        }
+        Node temp = head;
+        do {
+            Node n = temp.next;
+            if (n.data == val) {
+                temp.next = n.next;
+                break;
+            }
+            temp = temp.next;
+        } while (temp != head);
+    }
+
     void display() {
         Node temp = head;
 
@@ -41,6 +62,10 @@ public class CircularLL {
         ll.insertLast(10);
         ll.insertLast(20);
         ll.insertLast(30);
+        ll.insertLast(40);
+        ll.display();
+
+        ll.delete(40);
         ll.display();
     }
 }
