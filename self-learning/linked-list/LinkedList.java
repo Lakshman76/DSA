@@ -51,6 +51,20 @@ public class LinkedList {
         newNode.next = nextNode;
     }
 
+    private Node insertRecursion(int val, int idx, Node node) {
+        if (idx == 0) {
+            Node newNode = new Node(val);
+            newNode.next = node;
+            return newNode;
+        }
+        node.next = insertRecursion(val, idx - 1, node.next);
+        return node;
+    }
+
+    void insertRec(int val, int idx) {
+        head = insertRecursion(val, idx, head);
+    }
+
     int removeFirst(){
         int val = head.data;
         head = head.next;
@@ -133,6 +147,8 @@ public class LinkedList {
         // System.out.println(ll.remove(3));
         ll.display();
 
-        System.out.println(ll.find(17));
+        // System.out.println(ll.find(15));
+        ll.insertRec(4, 3);
+        ll.display();
     }
 }
