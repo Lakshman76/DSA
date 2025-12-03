@@ -32,50 +32,21 @@ public class MergeList {
     }
 
     ListNode mergeTwoLists(ListNode list1, ListNode list2) {
-        if (list1 == null && list2 == null)
-            return null;
-        if (list1 == null)
-            return list2;
-        if (list2 == null)
-            return list1;
-        ListNode head = null;
-        ListNode node = null;
+        ListNode head = new ListNode();
+        ListNode node = head;
         while (list1 != null && list2 != null) {
             if (list1.val <= list2.val) {
-                ListNode newNode = new ListNode(list1.val);
-                if (head == null) {
-                    head = newNode;
-                    node = head;
-                } else {
-                    node.next = newNode;
-                    node = newNode;
-                }
+                node.next = list1;
+                node = node.next;
                 list1 = list1.next;
             } else {
-                ListNode newNode = new ListNode(list2.val);
-                if (head == null) {
-                    head = newNode;
-                    node = head;
-                } else {
-                    node.next = newNode;
-                    node = newNode;
-                }
+                node.next = list2;
+                node = node.next;
                 list2 = list2.next;
             }
         }
-        while (list1 != null) {
-            ListNode newNode = new ListNode(list1.val);
-            node.next = newNode;
-            node = newNode;
-            list1 = list1.next;
-        }
-        while (list2 != null) {
-            ListNode newNode = new ListNode(list2.val);
-            node.next = newNode;
-            node = newNode;
-            list2 = list2.next;
-        }
-        return head;
+        node.next = (list1 != null) ? list1 : list2;
+        return head.next;
     }
 
     void merge(ListNode l1, ListNode l2) {
