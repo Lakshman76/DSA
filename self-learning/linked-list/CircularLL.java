@@ -17,11 +17,22 @@ public class CircularLL {
         if (head == null) {
             head = newNode;
             tail = newNode;
+            newNode.next = head;
             return;
         }
         tail.next = newNode;
         newNode.next = head;
         tail = newNode;
+    }
+
+    void insertFIrst(int data) {
+        Node newNode = new Node(data);
+        if (head == null) {
+            head = newNode;
+            return;
+        }
+        newNode.next = head;
+        head = newNode;
     }
 
     // Delete given node
@@ -45,6 +56,24 @@ public class CircularLL {
         } while (temp != head);
     }
 
+    int countNodeInCycle() {
+        Node slow = head;
+        Node fast = head;
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+            if (slow == fast) {
+                int count = 0;
+                do {
+                    slow = slow.next;
+                    count++;
+                } while (slow != fast);
+                return count;
+            }
+        }
+        return 0;
+    }
+
     void display() {
         Node temp = head;
 
@@ -53,7 +82,7 @@ public class CircularLL {
             temp = temp.next;
         } while (temp != head);
 
-        System.out.print("HEAD");
+        System.out.print("Again " + head.data);
         System.out.println();
     }
 
@@ -63,9 +92,17 @@ public class CircularLL {
         ll.insertLast(20);
         ll.insertLast(30);
         ll.insertLast(40);
+        ll.insertLast(50);
+
         ll.display();
 
-        ll.delete(40);
-        ll.display();
+        // ll.delete(40);
+        // ll.display();
+
+        ll.insertFIrst(8);
+        ll.insertFIrst(7);
+        ll.insertFIrst(5);
+        // ll.display();
+        System.out.println(ll.countNodeInCycle());
     }
 }
