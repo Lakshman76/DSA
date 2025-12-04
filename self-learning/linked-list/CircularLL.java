@@ -74,6 +74,32 @@ public class CircularLL {
         return 0;
     }
 
+    Node detectCycle(Node head) {
+        int length = 0;
+        length = countNodeInCycle();
+        if (length == 0) {
+            return null;
+        }
+        Node first = head;
+        Node second = head;
+
+        while (length > 0) {
+            second = second.next;
+            length--;
+        }
+
+        while (first != second) {
+            first = first.next;
+            second = second.next;
+        }
+        return second;
+    }
+
+    void findFirstCycle() {
+        Node ans = detectCycle(head);
+        System.out.println(ans.data);
+    }
+
     void display() {
         Node temp = head;
 
@@ -103,6 +129,8 @@ public class CircularLL {
         ll.insertFIrst(7);
         ll.insertFIrst(5);
         // ll.display();
-        System.out.println(ll.countNodeInCycle());
+        // System.out.println(ll.countNodeInCycle());
+
+        ll.findFirstCycle();
     }
 }
