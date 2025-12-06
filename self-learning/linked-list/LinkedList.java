@@ -113,6 +113,22 @@ public class LinkedList {
         }
         return null;
     }
+
+    Node middleNode() {
+        Node slow = head;
+        Node fast = head;
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        return slow;
+    }
+
+    void findMiddle() {
+        Node mid = middleNode();
+        System.out.println(mid.data);
+    }
+
     void display() {
         Node temp = head;
         while (temp != null) {
@@ -145,10 +161,12 @@ public class LinkedList {
         // ll.display();
 
         // System.out.println(ll.remove(3));
-        ll.display();
+        // ll.display();
 
         // System.out.println(ll.find(15));
         ll.insertRec(4, 3);
         ll.display();
+
+        ll.findMiddle();
     }
 }
