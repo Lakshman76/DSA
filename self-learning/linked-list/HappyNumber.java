@@ -17,10 +17,7 @@ public class HappyNumber {
             fast = squareSum(squareSum(fast));
         } while (slow != fast);
 
-        if (slow == 1)
-            return true;
-        else
-            return false;
+        return slow == 1;
     }
 
     public static void main(String[] args) {
