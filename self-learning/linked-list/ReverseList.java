@@ -33,7 +33,7 @@ public class ReverseList {
 
     // Reverse using recursion
 
-    private ListNode reverseList(ListNode node) {
+    private ListNode reverseRec(ListNode node) {
         if (node == tail) {
             head = node;
             return node;
@@ -45,6 +45,28 @@ public class ReverseList {
         return head;
     }
 
+    void reverseRec() {
+        head = reverseRec(head);
+    }
+
+    // In place reversal
+    public ListNode reverseList(ListNode head) {
+        if (head == null) {
+            return head;
+        }
+        ListNode prev = null;
+        ListNode curr = head;
+        ListNode next = head.next;
+        while (curr != null) {
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+            if (next != null) {
+                next = next.next;
+            }
+        }
+        return prev;
+    }
     void reverse() {
         head = reverseList(head);
     }
