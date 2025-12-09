@@ -32,7 +32,6 @@ public class ReverseList {
     }
 
     // Reverse using recursion
-
     private ListNode reverseRec(ListNode node) {
         if (node == tail) {
             head = node;
@@ -67,8 +66,39 @@ public class ReverseList {
         }
         return prev;
     }
+
+    public ListNode reverseBetween(ListNode head, int left, int right) {
+        if (left == right) {
+            return head;
+        }
+        ListNode prev = null;
+        ListNode curr = head;
+        for (int i = 1; curr != null && i < left; i++) {
+            prev = curr;
+            curr = curr.next;
+        }
+        ListNode newEnd = curr;
+        ListNode last = prev;
+        prev = null;
+        ListNode next = curr.next;
+        for (int i = left; curr != null && i <= right; i++) {
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+            if (next != null) {
+                next = next.next;
+            }
+        }
+        if (last != null) {
+            last.next = prev;
+        } else {
+            head = prev;
+        }
+        newEnd.next = curr;
+        return head;
+    }
     void reverse() {
-        head = reverseList(head);
+        head = reverseBetween(head, 3, 6);
     }
 
     void display() {
@@ -83,6 +113,9 @@ public class ReverseList {
 
     public static void main(String[] args) {
         ReverseList rl = new ReverseList();
+        rl.insert(8);
+        rl.insert(7);
+        rl.insert(6);
         rl.insert(5);
         rl.insert(4);
         rl.insert(3);
