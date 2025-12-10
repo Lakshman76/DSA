@@ -101,6 +101,35 @@ public class ReverseList {
         head = reverseBetween(head, 3, 6);
     }
 
+    private ListNode findMid(ListNode head) {
+        ListNode slow = head;
+        ListNode fast = head;
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        return slow;
+    }
+
+    private boolean isPalindrome(ListNode head) {
+        ListNode midNode = findMid(head);
+        ListNode secondHalf = reverseList(midNode);
+        ListNode reversed = secondHalf;
+        while (head != null && secondHalf != null) {
+            if (head.val != secondHalf.val) {
+                break;
+            }
+            head = head.next;
+            secondHalf = secondHalf.next;
+        }
+        reverseList(reversed);
+        return head == null || secondHalf == null;
+    }
+
+    void isPalindrome() {
+        System.out.println(isPalindrome(head));
+    }
+
     void display() {
         ListNode temp = head;
         while (temp != null) {
@@ -113,17 +142,14 @@ public class ReverseList {
 
     public static void main(String[] args) {
         ReverseList rl = new ReverseList();
-        rl.insert(8);
-        rl.insert(7);
-        rl.insert(6);
-        rl.insert(5);
-        rl.insert(4);
+        rl.insert(1);
+        rl.insert(2);
         rl.insert(3);
         rl.insert(2);
         rl.insert(1);
         rl.display();
 
-        rl.reverse();
+        rl.isPalindrome();
         rl.display();
     }
 }
