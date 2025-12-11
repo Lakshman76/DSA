@@ -136,8 +136,9 @@ public class ReverseList {
         }
         ListNode start = head;
         ListNode mid = findMid(head);
-        ListNode reversed = reverseList(mid);
-        while (start != null && reversed.next != null) {
+        ListNode reversed = reverseList(mid.next);
+        mid.next = null;
+        while (start != null && reversed != null) {
             ListNode temp = start.next;
             start.next = reversed;
             start = temp;
@@ -170,7 +171,7 @@ public class ReverseList {
         rl.insert(3);
         rl.insert(4);
         rl.insert(5);
-        rl.insert(6);
+        // rl.insert(6);
         rl.display();
 
         // rl.isPalindrome();
