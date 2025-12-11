@@ -130,6 +130,29 @@ public class ReverseList {
         System.out.println(isPalindrome(head));
     }
 
+    private ListNode reorderList(ListNode head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+        ListNode start = head;
+        ListNode mid = findMid(head);
+        ListNode reversed = reverseList(mid);
+        while (start != null && reversed.next != null) {
+            ListNode temp = start.next;
+            start.next = reversed;
+            start = temp;
+
+            temp = reversed.next;
+            reversed.next = start;
+            reversed = temp;
+        }
+        return head;
+    }
+
+    void reorderList() {
+        head = reorderList(head);
+    }
+
     void display() {
         ListNode temp = head;
         while (temp != null) {
@@ -145,11 +168,13 @@ public class ReverseList {
         rl.insert(1);
         rl.insert(2);
         rl.insert(3);
-        rl.insert(2);
-        rl.insert(1);
+        rl.insert(4);
+        rl.insert(5);
+        rl.insert(6);
         rl.display();
 
-        rl.isPalindrome();
+        // rl.isPalindrome();
+        rl.reorderList();
         rl.display();
     }
 }
