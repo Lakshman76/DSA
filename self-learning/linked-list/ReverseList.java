@@ -149,9 +149,54 @@ public class ReverseList {
         }
         return head;
     }
-
     void reorderList() {
         head = reorderList(head);
+    }
+
+    private ListNode reverseKGroup(ListNode head, int k) {
+        if (k <= 1 || head == null) {
+            return head;
+        }
+        ListNode curr = head;
+        ListNode newEnd = head;
+        while (curr != null) {
+            // Check if at least k nodes exist
+            ListNode check = curr;
+            int count = 0;
+            while (count < k && check != null) {
+                check = check.next;
+                count++;
+            }
+            if (count < k) {
+                newEnd.next = curr;
+                break;
+            }
+
+            // Reverse exactly k nodes
+            ListNode prev = null;
+            ListNode start = curr;
+            ListNode next = curr.next;
+            for (int i = 0; i < k && curr != null; i++) {
+                curr.next = prev;
+                prev = curr;
+                curr = next;
+                if (next != null) {
+                    next = next.next;
+                }
+            }
+            if (newEnd == head) {
+                newEnd = start;
+                head = prev;
+            } else {
+                newEnd.next = prev;
+                newEnd = start;
+            }
+        }
+        return head;
+    }
+
+    void reverseKGroup() {
+        head = reverseKGroup(head, 4);
     }
 
     void display() {
@@ -171,11 +216,14 @@ public class ReverseList {
         rl.insert(3);
         rl.insert(4);
         rl.insert(5);
-        // rl.insert(6);
+        rl.insert(6);
+        rl.insert(7);
+
         rl.display();
 
         // rl.isPalindrome();
-        rl.reorderList();
+        // rl.reorderList();
+        rl.reverseKGroup();
         rl.display();
     }
 }
