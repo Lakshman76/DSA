@@ -238,6 +238,34 @@ public class ReverseList {
         head = rotateRight(head, 2);
     }
 
+    private ListNode rotateRight2(ListNode head, int k) {
+        if (head == null || head.next == null || k < 1) {
+            return head;
+        }
+        int len = 1;
+        ListNode last = head;
+        while (last.next != null) {
+            len++;
+            last = last.next;
+        }
+        k = k % len;
+        if (len == k) {
+            return head;
+        }
+        last.next = head;
+        ListNode newLast = head;
+        for (int i = 1; i < len - k; i++) {
+            newLast = newLast.next;
+        }
+        head = newLast.next;
+        newLast.next = null;
+        return head;
+    }
+
+    void rotateRight2() {
+        head = rotateRight2(head, 3);
+    }
+
     void display() {
         ListNode temp = head;
         while (temp != null) {
@@ -255,15 +283,15 @@ public class ReverseList {
         rl.insert(3);
         rl.insert(4);
         rl.insert(5);
-        // rl.insert(6);
-        // rl.insert(7);
+        rl.insert(6);
+        rl.insert(7);
 
         rl.display();
 
         // rl.isPalindrome();
         // rl.reorderList();
         // rl.reverseKGroup();
-        rl.rotateRight();
+        rl.rotateRight2();
         rl.display();
     }
 }
