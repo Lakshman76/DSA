@@ -290,6 +290,31 @@ public class ReverseList {
         head = removeNthFromEnd(head, 3);
     }
 
+    private ListNode swapNodes(ListNode head, int k) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+        ListNode first = head;
+        for (int i = 1; i < k; i++) {
+            first = first.next;
+        }
+        ListNode second = head;
+        ListNode temp = first;
+        while (temp.next != null) {
+            second = second.next;
+            temp = temp.next;
+        }
+        // Swap
+        int value = first.val;
+        first.val = second.val;
+        second.val = value;
+        return head;
+    }
+
+    void swapNodes() {
+        head = swapNodes(head, 3);
+    }
+
     void display() {
         ListNode temp = head;
         while (temp != null) {
@@ -316,7 +341,8 @@ public class ReverseList {
         // rl.reorderList();
         // rl.reverseKGroup();
         // rl.rotateRight2();
-        rl.removeNthFromEnd();
+        // rl.removeNthFromEnd();
+        rl.swapNodes();
         rl.display();
     }
 }
