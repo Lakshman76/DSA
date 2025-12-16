@@ -266,6 +266,30 @@ public class ReverseList {
         head = rotateRight2(head, 3);
     }
 
+    private ListNode removeNthFromEnd(ListNode head, int n) {
+        int length = 0;
+        ListNode temp = head;
+        while (temp != null) {
+            length++;
+            temp = temp.next;
+        }
+        if (length == n) {
+            return head.next;
+        }
+        ListNode prev = null;
+        ListNode curr = head;
+        for (int i = 1; i <= length - n; i++) {
+            prev = curr;
+            curr = curr.next;
+        }
+        prev.next = curr.next;
+        return head;
+    }
+
+    void removeNthFromEnd() {
+        head = removeNthFromEnd(head, 3);
+    }
+
     void display() {
         ListNode temp = head;
         while (temp != null) {
@@ -291,7 +315,8 @@ public class ReverseList {
         // rl.isPalindrome();
         // rl.reorderList();
         // rl.reverseKGroup();
-        rl.rotateRight2();
+        // rl.rotateRight2();
+        rl.removeNthFromEnd();
         rl.display();
     }
 }
