@@ -129,6 +129,26 @@ public class LinkedList {
         System.out.println(mid.data);
     }
 
+    private Node arrangeOddEven(Node head) {
+        if (head == null)
+            return null;
+        Node odd = head;
+        Node even = head.next;
+        Node evenHead = even;
+        while (even != null && even.next != null) {
+            odd.next = even.next;
+            odd = odd.next;
+            even.next = odd.next;
+            even = even.next;
+        }
+        odd.next = evenHead;
+        return head;
+    }
+
+    public void arrangeOddEven() {
+        head = arrangeOddEven(head);
+    }
+
     void display() {
         Node temp = head;
         while (temp != null) {
@@ -168,5 +188,8 @@ public class LinkedList {
         ll.display();
 
         ll.findMiddle();
+
+        ll.arrangeOddEven();
+        ll.display();
     }
 }
