@@ -2,34 +2,30 @@ import java.util.Stack;
 
 public class QueueUsingStack {
 
-    // Insertion Efficient
     Stack<Integer> first = new Stack<>();
     Stack<Integer> second = new Stack<>();
 
+    // Removal Efficient
     public void push(int x) {
-        first.push(x);
+        if (first.isEmpty()) {
+            first.push(x);
+        } else {
+            while (!first.isEmpty()) {
+                second.push(first.pop());
+            }
+            first.push(x);
+            while (!second.isEmpty()) {
+                first.push(second.pop());
+            }
+        }
     }
 
     public int pop() {
-        while (!first.isEmpty()) {
-            second.push(first.pop());
-        }
-        int removed = second.pop();
-        while (!second.isEmpty()) {
-            first.push(second.pop());
-        }
-        return removed;
+        return first.pop();
     }
 
     public int peek() {
-        while (!first.isEmpty()) {
-            second.push(first.pop());
-        }
-        int top = second.peek();
-        while (!second.isEmpty()) {
-            first.push(second.pop());
-        }
-        return top;
+        return first.peek();
     }
 
     public boolean empty() {
