@@ -21,15 +21,25 @@ public class QueueMain {
         cQueue.add(4);
         cQueue.add(8);
 
-        cQueue.display();
+        // cQueue.display();
 
-        System.out.println(cQueue.peek());
+        // System.out.println(cQueue.peek());
         cQueue.remove();
         cQueue.remove();
         cQueue.add(9);
         cQueue.add(7);
-        System.out.println(cQueue.peek());
+        // System.out.println(cQueue.peek());
 
-        cQueue.display();
+        // cQueue.display();
+
+        DynamicQueue dQueue = new DynamicQueue(3);
+        dQueue.add(30);
+        dQueue.add(34);
+        dQueue.add(10);
+        dQueue.add(3);
+        dQueue.add(17);
+        dQueue.remove();
+        dQueue.display();
+
     }
 }
