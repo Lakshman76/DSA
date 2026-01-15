@@ -1,4 +1,6 @@
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 import java.util.Scanner;
 
@@ -66,6 +68,43 @@ public class BFS {
         }
 
         bfsTraversal(queue);
+    }
+
+    // store each level in a list
+
+    public void levelOrder() {
+        List<List<Integer>> result = new ArrayList<>();
+        result = levelOrder(root);
+
+        for (List<Integer> list : result) {
+            System.out.print(list + "\t");
+        }
+    }
+
+    private List<List<Integer>> levelOrder(Node root) {
+        List<List<Integer>> result = new ArrayList<>();
+        if (root == null) {
+            return result;
+        }
+        Queue<Node> queue = new LinkedList<>();
+        queue.add(root);
+
+        while (!queue.isEmpty()) {
+            int qSize = queue.size();
+            List<Integer> li = new ArrayList<>();
+            for (int i = 0; i < qSize; i++) {
+                Node node = queue.remove();
+                if (node.left != null) {
+                    queue.add(node.left);
+                }
+                if (node.right != null) {
+                    queue.add(node.right);
+                }
+                li.add(node.value);
+            }
+            result.add(li);
+        }
+        return result;
     }
 
     // Display tree

@@ -7,5 +7,6 @@ public class BFSMain {
         bfs.insert(sc);
         bfs.display();
         bfs.bfsTraversal();
+        bfs.levelOrder();
     }
 }
