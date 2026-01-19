@@ -142,6 +142,39 @@ public class BFS {
         return result;
     }
 
+    // Find the next successor
+    public void findSuccessor() {
+        Node node = findSuccessor(root, 20);
+        if (node != null) {
+            System.out.println(node.value);
+        } else {
+            System.out.println("Empty");
+        }
+    }
+
+    private Node findSuccessor(Node root, int key) {
+        if (root == null) {
+            return null;
+        }
+        Queue<Node> queue = new LinkedList<>();
+        queue.add(root);
+
+        while (!queue.isEmpty()) {
+            Node node = queue.remove();
+            if (node.left != null) {
+                queue.add(node.left);
+            }
+            if (node.right != null) {
+                queue.add(node.right);
+            }
+            if (node.value == key) {
+                break;
+            }
+
+        }
+        return queue.peek();
+    }
+
     // Display tree
     public void display() {
         display(root, 0);

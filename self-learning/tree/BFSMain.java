@@ -8,6 +8,7 @@ public class BFSMain {
         bfs.display();
         // bfs.bfsTraversal();
         // bfs.levelOrder();
-        bfs.averageOfLevels();
+        // bfs.averageOfLevels();
+        bfs.findSuccessor();
     }
 }
