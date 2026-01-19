@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Queue;
 import java.util.Scanner;
 
+import javax.swing.tree.TreeNode;
+
 public class BFS {
     private static class Node {
         int value;
@@ -103,6 +105,39 @@ public class BFS {
                 li.add(node.value);
             }
             result.add(li);
+        }
+        return result;
+    }
+
+    // find average of each level
+    public void averageOfLevels() {
+        List<Double> result = averageOfLevels(root);
+        System.out.println(result);
+    }
+
+    private List<Double> averageOfLevels(Node root) {
+        List<Double> result = new ArrayList<>();
+        if (root == null) {
+            return result;
+        }
+        Queue<Node> queue = new LinkedList<>();
+        queue.add(root);
+
+        while (!queue.isEmpty()) {
+            int qSize = queue.size();
+            double avg = 0.0;
+            for (int i = 0; i < qSize; i++) {
+                Node node = queue.remove();
+                if (node.left != null) {
+                    queue.add(node.left);
+                }
+                if (node.right != null) {
+                    queue.add(node.right);
+                }
+                avg += node.value;
+            }
+            avg /= qSize;
+            result.add(avg);
         }
         return result;
     }

@@ -6,7 +6,8 @@ public class BFSMain {
         BFS bfs = new BFS();
         bfs.insert(sc);
         bfs.display();
-        bfs.bfsTraversal();
-        bfs.levelOrder();
+        // bfs.bfsTraversal();
+        // bfs.levelOrder();
+        bfs.averageOfLevels();
     }
 }
