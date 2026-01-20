@@ -9,6 +9,7 @@ public class BFSMain {
         // bfs.bfsTraversal();
         // bfs.levelOrder();
         // bfs.averageOfLevels();
-        bfs.findSuccessor();
+        // bfs.findSuccessor();
+        bfs.zigzagLevelOrder();
     }
 }

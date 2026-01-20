@@ -1,4 +1,6 @@
+import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
@@ -173,6 +175,55 @@ public class BFS {
 
         }
         return queue.peek();
+    }
+
+    // Store tree in zig-zag order
+    public void zigzagLevelOrder() {
+        List<List<Integer>> result = new ArrayList<>();
+        result = zigzagLevelOrder(root);
+
+        for (List<Integer> list : result) {
+            System.out.print(list + "\t");
+        }
+    }
+
+    private List<List<Integer>> zigzagLevelOrder(Node root) {
+        List<List<Integer>> result = new ArrayList<>();
+        if (root == null) {
+            return result;
+        }
+        Deque<Node> deque = new ArrayDeque<>();
+        deque.add(root);
+        boolean isRev = false;
+
+        while (!deque.isEmpty()) {
+            int qSize = deque.size();
+            List<Integer> li = new ArrayList<>();
+            for (int i = 0; i < qSize; i++) {
+                if (isRev) {
+                    Node node = deque.removeLast();
+                    if (node.right != null) {
+                        deque.addFirst(node.right);
+                    }
+                    if (node.left != null) {
+                        deque.addFirst(node.left);
+                    }
+                    li.add(node.value);
+                } else {
+                    Node node = deque.remove();
+                    if (node.left != null) {
+                        deque.add(node.left);
+                    }
+                    if (node.right != null) {
+                        deque.add(node.right);
+                    }
+                    li.add(node.value);
+                }
+            }
+            isRev = !isRev;
+            result.add(li);
+        }
+        return result;
     }
 
     // Display tree
