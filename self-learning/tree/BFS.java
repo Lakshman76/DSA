@@ -6,8 +6,6 @@ import java.util.List;
 import java.util.Queue;
 import java.util.Scanner;
 
-import javax.swing.tree.TreeNode;
-
 public class BFS {
     private static class Node {
         int value;
@@ -222,6 +220,36 @@ public class BFS {
             }
             isRev = !isRev;
             result.add(li);
+        }
+        return result;
+    }
+
+    public void rightSideView() {
+        System.out.println(rightSideView(root));
+    }
+
+    private List<Integer> rightSideView(Node root) {
+        List<Integer> result = new ArrayList<>();
+        if (root == null) {
+            return result;
+        }
+        Queue<Node> queue = new LinkedList<>();
+        queue.add(root);
+
+        while (!queue.isEmpty()) {
+            int qSize = queue.size();
+            for (int i = 0; i < qSize; i++) {
+                Node node = queue.remove();
+                if (node.left != null) {
+                    queue.add(node.left);
+                }
+                if (node.right != null) {
+                    queue.add(node.right);
+                }
+                if (i == qSize - 1) {
+                    result.add(node.value);
+                }
+            }
         }
         return result;
     }
