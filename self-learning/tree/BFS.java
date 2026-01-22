@@ -224,6 +224,7 @@ public class BFS {
         return result;
     }
 
+    // Print right side view of BT
     public void rightSideView() {
         System.out.println(rightSideView(root));
     }
@@ -254,6 +255,53 @@ public class BFS {
         return result;
     }
 
+    // Check two node is cousin or not
+    public void isCousins(int x, int y) {
+        System.out.println(isCousins(root, x, y));
+    }
+
+    private boolean isCousins(Node root, int x, int y) {
+        Node xnode = findNode(root, x);
+        Node ynode = findNode(root, y);
+
+        return ((level(root, xnode, 0) == level(root, ynode, 0)) && (!isSibling(root, xnode, ynode)));
+    }
+
+    Node findNode(Node node, int value) {
+        if (node == null) {
+            return null;
+        }
+        if (node.value == value) {
+            return node;
+        }
+        Node n = findNode(node.left, value);
+        if (n != null) {
+            return n;
+        }
+        return findNode(node.right, value);
+    }
+
+    int level(Node node, Node n, int lvl) {
+        if (node == null) {
+            return 0;
+        }
+        if (node == n) {
+            return lvl;
+        }
+        int l = level(node.left, n, lvl + 1);
+        if (l != 0) {
+            return l;
+        }
+        return level(node.right, n, lvl + 1);
+    }
+
+    boolean isSibling(Node node, Node x, Node y) {
+        if (node == null) {
+            return false;
+        }
+        return ((node.left == x && node.right == y) || (node.left == y && node.right == x) || isSibling(node.left, x, y)
+                || isSibling(node.right, x, y));
+    }
     // Display tree
     public void display() {
         display(root, 0);

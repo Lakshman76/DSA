@@ -11,6 +11,7 @@ public class BFSMain {
         // bfs.averageOfLevels();
         // bfs.findSuccessor();
         // bfs.zigzagLevelOrder();
-        bfs.rightSideView();
+        // bfs.rightSideView();
+        bfs.isCousins(5, 4);
     }
 }
