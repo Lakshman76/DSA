@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Queue;
 import java.util.Scanner;
 
+import javax.swing.tree.TreeNode;
+
 public class BFS {
     private static class Node {
         int value;
@@ -302,6 +304,39 @@ public class BFS {
         return ((node.left == x && node.right == y) || (node.left == y && node.right == x) || isSibling(node.left, x, y)
                 || isSibling(node.right, x, y));
     }
+
+    // Check tree is symmetric or not
+    public void isSymmetric() {
+        System.out.println(isSymmetric(root));
+    }
+
+    private boolean isSymmetric(Node root) {
+        if (root == null) {
+            return true;
+        }
+        Queue<Node> queue = new LinkedList<>();
+        queue.add(root.left);
+        queue.add(root.right);
+        while (!queue.isEmpty()) {
+            Node leftNode = queue.poll();
+            Node rightNode = queue.poll();
+            if (leftNode == null && rightNode == null) {
+                continue;
+            }
+            if (leftNode == null || rightNode == null) {
+                return false;
+            }
+            if (leftNode.value != rightNode.value) {
+                return false;
+            }
+            queue.offer(leftNode.left);
+            queue.offer(rightNode.right);
+            queue.offer(leftNode.right);
+            queue.offer(rightNode.left);
+        }
+        return true;
+    }
+
     // Display tree
     public void display() {
         display(root, 0);

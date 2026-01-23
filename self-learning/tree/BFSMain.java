@@ -12,6 +12,7 @@ public class BFSMain {
         // bfs.findSuccessor();
         // bfs.zigzagLevelOrder();
         // bfs.rightSideView();
-        bfs.isCousins(5, 4);
+        // bfs.isCousins(5, 4);
+        bfs.isSymmetric();
     }
 }
