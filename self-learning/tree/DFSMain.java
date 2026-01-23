@@ -8,6 +8,7 @@ public class DFSMain {
         dfs.display();
 
         // dfs.diameterOfBinaryTree();
-        dfs.invertTree();
+        // dfs.invertTree();
+        dfs.maxDepth();
     }
 }

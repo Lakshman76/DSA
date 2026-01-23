@@ -69,7 +69,7 @@ public class DFS {
     // Invert binary tree
     public void invertTree() {
         root = invertTree(root);
-        System.out.println("*********After invert the tree look like*************** ");
+        System.out.println("*********After invert, The tree look like*************** ");
         display();
     }
 
@@ -84,6 +84,21 @@ public class DFS {
         root.right = left;
 
         return root;
+    }
+
+    // Find max depth of Binart Tree
+    public void maxDepth() {
+        System.out.println("Max Depth: " + maxDepth(root));
+    }
+
+    private int maxDepth(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+        int leftDepth = maxDepth(root.left);
+        int rightDepth = maxDepth(root.right);
+
+        return Math.max(leftDepth, rightDepth) + 1;
     }
 
     // Display tree
