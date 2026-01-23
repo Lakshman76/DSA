@@ -66,6 +66,26 @@ public class DFS {
         return Math.max(leftHeight, rightHeight) + 1;
     }
 
+    // Invert binary tree
+    public void invertTree() {
+        root = invertTree(root);
+        System.out.println("*********After invert the tree look like*************** ");
+        display();
+    }
+
+    private TreeNode invertTree(TreeNode root) {
+        if (root == null) {
+            return null;
+        }
+        TreeNode left = invertTree(root.left);
+        TreeNode right = invertTree(root.right);
+
+        root.left = right;
+        root.right = left;
+
+        return root;
+    }
+
     // Display tree
     public void display() {
         display(root, 0);

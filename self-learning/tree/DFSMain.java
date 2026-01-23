@@ -7,6 +7,7 @@ public class DFSMain {
         dfs.insert(sc);
         dfs.display();
 
-        dfs.diameterOfBinaryTree();
+        // dfs.diameterOfBinaryTree();
+        dfs.invertTree();
     }
 }
