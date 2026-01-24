@@ -101,6 +101,35 @@ public class DFS {
         return Math.max(leftDepth, rightDepth) + 1;
     }
 
+    // Convert sorted array into Binary Search Tree
+
+    public TreeNode sortedArrayToBST(int[] nums) {
+        populateSorted(nums, 0, nums.length);
+        return root;
+    }
+
+    private void populateSorted(int[] nums, int start, int end) {
+        if (start >= end) {
+            return;
+        }
+        int mid = (start + end) / 2;
+        root = insert(nums[mid], root);
+        populateSorted(nums, start, mid);
+        populateSorted(nums, mid + 1, end);
+    }
+
+    private TreeNode insert(int value, TreeNode node) {
+        if (node == null) {
+            return new TreeNode(value);
+        }
+        if (value < node.value) {
+            node.left = insert(value, node.left);
+        } else {
+            node.right = insert(value, node.right);
+        }
+        return node;
+    }
+
     // Display tree
     public void display() {
         display(root, 0);
