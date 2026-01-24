@@ -15,7 +15,9 @@ public class DFSMain {
         // dfs.sortedArrayToBST(nums);
         // dfs.display();
 
-        dfs.flatten();
-        dfs.display();
+        // dfs.flatten();
+        // dfs.display();
+
+        dfs.flattenOptimized();
     }
 }
