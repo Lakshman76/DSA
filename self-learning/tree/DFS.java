@@ -1,4 +1,6 @@
+import java.util.Queue;
 import java.util.Scanner;
+import java.util.LinkedList;
 
 public class DFS {
     private static class TreeNode {
@@ -128,6 +130,39 @@ public class DFS {
             node.right = insert(value, node.right);
         }
         return node;
+    }
+
+    // Flatten Binary Tree to Linked List
+    // Time and space O(n)
+
+    public void flatten() {
+        flatten(root);
+    }
+
+    Queue<TreeNode> queue = new LinkedList<>();
+
+    private void flatten(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+        addIntoQ(root);
+        TreeNode node = queue.poll();
+        TreeNode temp = node;
+        while (!queue.isEmpty()) {
+            temp.left = null;
+            temp.right = queue.poll();
+
+            temp = temp.right;
+        }
+    }
+
+    private void addIntoQ(TreeNode node) {
+        if (node == null) {
+            return;
+        }
+        queue.offer(node);
+        addIntoQ(node.left);
+        addIntoQ(node.right);
     }
 
     // Display tree
