@@ -218,6 +218,32 @@ public class DFS {
         return isLeftCorrect && isRighttCorrect;
     }
 
+    // Lowest Common Ancestor of a Binary Tree
+    public void lowestCommonAncestor() {
+        TreeNode p = new TreeNode(5);
+        TreeNode q = new TreeNode(1);
+        TreeNode ans = lowestCommonAncestor(root, p, q);
+
+        System.out.println(ans);
+    }
+
+    private TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        if (root == null) {
+            return null;
+        }
+        if (root == p || root == q) {
+            return root;
+        }
+        TreeNode left = lowestCommonAncestor(root.left, p, q);
+        TreeNode right = lowestCommonAncestor(root.right, p, q);
+
+        if (left != null && right != null) {
+            return root;
+        }
+
+        return left == null ? right : left;
+    }
+
     // Display tree
     public void display() {
         display(root, 0);

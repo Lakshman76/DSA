@@ -20,6 +20,8 @@ public class DFSMain {
 
         // dfs.flattenOptimized();
 
-        dfs.isValidBST();
+        // dfs.isValidBST();
+
+        dfs.lowestCommonAncestor();
     }
 }
