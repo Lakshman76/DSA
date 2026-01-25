@@ -189,6 +189,35 @@ public class DFS {
         }
     }
 
+    // Validate Binary Search Tree
+
+    public void isValidBST() {
+        System.out.println(isValidBST(root));
+    }
+
+    private boolean isValidBST(TreeNode root) {
+        return helper(root, null, null);
+    }
+
+    private boolean helper(TreeNode node, Integer low, Integer high) {
+        if (node == null) {
+            return true;
+        }
+
+        if (low != null && node.value <= low) {
+            return false;
+        }
+
+        if (high != null && node.value >= high) {
+            return false;
+        }
+
+        boolean isLeftCorrect = helper(node.left, low, node.value);
+        boolean isRighttCorrect = helper(node.right, node.value, high);
+
+        return isLeftCorrect && isRighttCorrect;
+    }
+
     // Display tree
     public void display() {
         display(root, 0);

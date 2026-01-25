@@ -18,6 +18,8 @@ public class DFSMain {
         // dfs.flatten();
         // dfs.display();
 
-        dfs.flattenOptimized();
+        // dfs.flattenOptimized();
+
+        dfs.isValidBST();
     }
 }
