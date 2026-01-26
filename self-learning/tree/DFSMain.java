@@ -22,6 +22,8 @@ public class DFSMain {
 
         // dfs.isValidBST();
 
-        dfs.lowestCommonAncestor();
+        // dfs.lowestCommonAncestor();
+
+        dfs.kthSmallest();
     }
 }

@@ -244,6 +244,33 @@ public class DFS {
         return left == null ? right : left;
     }
 
+    // Kth Smallest Element in a BST
+
+    public void kthSmallest() {
+        System.out.println(kthSmallest(root, 3));
+    }
+
+    int count = 0;
+
+    private int kthSmallest(TreeNode root, int k) {
+        return helper(root, k).value;
+    }
+
+    private TreeNode helper(TreeNode node, int k) {
+        if (node == null) {
+            return null;
+        }
+        TreeNode left = helper(node.left, k);
+        if (left != null) {
+            return left;
+        }
+        count++;
+        if (count == k) {
+            return node;
+        }
+        return helper(node.right, k);
+    }
+
     // Display tree
     public void display() {
         display(root, 0);
