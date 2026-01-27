@@ -1,11 +1,11 @@
-import java.util.Scanner;
+// import java.util.Scanner;
 
 public class DFSMain {
     public static void main(String[] args) {
         DFS dfs = new DFS();
-        Scanner sc = new Scanner(System.in);
-        dfs.insert(sc);
-        dfs.display();
+        // Scanner sc = new Scanner(System.in);
+        // dfs.insert(sc);
+        // dfs.display();
 
         // dfs.diameterOfBinaryTree();
         // dfs.invertTree();
@@ -24,6 +24,8 @@ public class DFSMain {
 
         // dfs.lowestCommonAncestor();
 
-        dfs.kthSmallest();
+        // dfs.kthSmallest();
+
+        dfs.buildTree();
     }
 }

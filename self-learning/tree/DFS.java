@@ -1,5 +1,6 @@
 import java.util.Queue;
 import java.util.Scanner;
+import java.util.Arrays;
 import java.util.LinkedList;
 
 public class DFS {
@@ -269,6 +270,38 @@ public class DFS {
             return node;
         }
         return helper(node.right, k);
+    }
+
+    // Construct Binary Tree from Preorder and Inorder Traversal
+
+    public void buildTree() {
+        int[] preorder = { 3, 9, 20, 15, 7 };
+        int[] inorder = { 9, 3, 15, 20, 7 };
+
+        root = buildTree(preorder, inorder);
+        display();
+    }
+
+    private TreeNode buildTree(int[] preorder, int[] inorder) {
+        if (preorder.length == 0) {
+            return null;
+        }
+        int root = preorder[0];
+        int idx = 0;
+        for (int i = 0; i < inorder.length; i++) {
+            if (inorder[i] == root) {
+                idx = i;
+                break;
+            }
+        }
+        TreeNode node = new TreeNode(root);
+
+        node.left = buildTree(Arrays.copyOfRange(preorder, 1, idx + 1), Arrays.copyOfRange(inorder, 0, idx));
+
+        node.right = buildTree(Arrays.copyOfRange(preorder, idx + 1, preorder.length),
+                Arrays.copyOfRange(inorder, idx + 1, inorder.length));
+
+        return node;
     }
 
     // Display tree
