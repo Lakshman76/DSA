@@ -28,6 +28,8 @@ public class DFSMain {
 
         // dfs.buildTree();
 
-        dfs.hasPathSum();
+        // dfs.hasPathSum();
+
+        dfs.sumNumbers();
     }
 }

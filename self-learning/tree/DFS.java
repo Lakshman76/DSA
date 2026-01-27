@@ -323,6 +323,32 @@ public class DFS {
         return left || right;
     }
 
+    // Sum Root to Leaf Numbers
+
+    public void sumNumbers() {
+        System.out.println("Total sum = " + sumNumbers(root));
+    }
+
+    private int sumNumbers(TreeNode root) {
+        return helper2(root, 0);
+    }
+
+    private int helper2(TreeNode node, int sum) {
+        if (node == null) {
+            return 0;
+        }
+        sum = sum * 10 + node.value;
+
+        if (node.left == null && node.right == null) {
+            return sum;
+        }
+
+        int left = helper2(node.left, sum);
+        int right = helper2(node.right, sum);
+
+        return left + right;
+    }
+
     // Display tree
     public void display() {
         display(root, 0);
