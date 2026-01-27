@@ -304,6 +304,25 @@ public class DFS {
         return node;
     }
 
+    // Path Sum
+    public void hasPathSum() {
+        System.out.println(hasPathSum(root, 22));
+    }
+
+    private boolean hasPathSum(TreeNode root, int targetSum) {
+        if (root == null) {
+            return false;
+        }
+        if (root.value == targetSum && root.left == null && root.right == null) {
+            return true;
+        }
+
+        boolean left = hasPathSum(root.left, targetSum - root.value);
+        boolean right = hasPathSum(root.right, targetSum - root.value);
+
+        return left || right;
+    }
+
     // Display tree
     public void display() {
         display(root, 0);
