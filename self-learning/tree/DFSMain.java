@@ -30,6 +30,8 @@ public class DFSMain {
 
         // dfs.hasPathSum();
 
-        dfs.sumNumbers();
+        // dfs.sumNumbers();
+
+        dfs.maxPathSum();
     }
 }

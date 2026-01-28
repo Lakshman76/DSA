@@ -349,6 +349,37 @@ public class DFS {
         return left + right;
     }
 
+    // Binary Tree Maximum Path Sum
+
+    public void maxPathSum() {
+        System.out.println("Maximum path sum = " + maxPathSum(root));
+    }
+
+    int max = Integer.MIN_VALUE;
+
+    private int maxPathSum(TreeNode root) {
+        helper(root);
+        return max;
+    }
+
+    int helper(TreeNode node) {
+        if (node == null) {
+            return 0;
+        }
+
+        int left = helper(node.left);
+        int right = helper(node.right);
+
+        left = Math.max(0, left);
+        right = Math.max(0, right);
+
+        int pathSum = left + right + node.value;
+
+        max = Math.max(max, pathSum);
+
+        return Math.max(left, right) + node.value;
+    }
+
     // Display tree
     public void display() {
         display(root, 0);
