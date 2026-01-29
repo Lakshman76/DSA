@@ -32,6 +32,8 @@ public class DFSMain {
 
         // dfs.sumNumbers();
 
-        dfs.maxPathSum();
+        // dfs.maxPathSum();
+
+        dfs.longestUnivaluePath();
     }
 }

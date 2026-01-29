@@ -380,6 +380,41 @@ public class DFS {
         return Math.max(left, right) + node.value;
     }
 
+    // Longest univalue path
+
+    public void longestUnivaluePath() {
+        System.out.println("Longest univalue path: " + longestUnivaluePath(root));
+    }
+
+    int longest = 0;
+
+    private int longestUnivaluePath(TreeNode root) {
+        helper2(root);
+        return longest == 0 ? 0 : longest - 1;
+    }
+
+    private int helper2(TreeNode node) {
+        if (node == null) {
+            return 0;
+        }
+        int left = helper2(node.left);
+        int right = helper2(node.right);
+
+        if (node.left != null && node.value == node.left.value) {
+            left += 1;
+        } else {
+            left = 0;
+        }
+        if (node.right != null && node.value == node.right.value) {
+            right += 1;
+        } else {
+            right = 0;
+        }
+        longest = Math.max(longest, left + right + 1);
+
+        return Math.max(left, right);
+    }
+
     // Display tree
     public void display() {
         display(root, 0);
