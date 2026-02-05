@@ -10,5 +10,9 @@ public class HeapMain {
 
         heap.display();
 
+        System.out.println(heap.remove());
+        System.out.println(heap.remove());
+
+        heap.display();
     }
 }
