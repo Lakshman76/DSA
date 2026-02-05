@@ -75,6 +75,14 @@ public class Heap<T extends Comparable<T>> {
         }
     }
 
+    public ArrayList<T> heapSort() throws Exception {
+        ArrayList<T> data = new ArrayList<>();
+        while (!list.isEmpty()) {
+            data.add(this.remove());
+        }
+        return data;
+    }
+
     public void display() {
         for (int i = 0; i < list.size(); i++) {
             System.out.print(list.get(i) + "  ");

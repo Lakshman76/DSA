@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class HeapMain {
     public static void main(String[] args) throws Exception {
         Heap<Integer> heap = new Heap<>();
@@ -7,6 +9,10 @@ public class HeapMain {
         heap.insert(40);
         heap.insert(70);
         heap.insert(20);
+        heap.insert(10);
+        heap.insert(55);
+        heap.insert(45);
+        heap.insert(65);
 
         heap.display();
 
@@ -14,5 +20,9 @@ public class HeapMain {
         System.out.println(heap.remove());
 
         heap.display();
+
+        // heap sort
+        ArrayList<Integer> list = heap.heapSort();
+        System.out.println(list);
     }
 }
