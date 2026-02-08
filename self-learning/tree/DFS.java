@@ -415,6 +415,36 @@ public class DFS {
         return Math.max(left, right);
     }
 
+    // Given a binary tree, determine if it is height-balanced.
+
+    public void isBalanced() {
+        System.out.println(isBalanced(root));
+    }
+
+    private boolean isBalanced(TreeNode root) {
+        return dfsPostOrder(root) != -1;
+    }
+
+    private int dfsPostOrder(TreeNode node) {
+        if (node == null) {
+            return 0;
+        }
+        int left = dfsPostOrder(node.left);
+        if (left == -1) {
+            return left;
+        }
+        int right = dfsPostOrder(node.right);
+        if (right == -1) {
+            return right;
+        }
+
+        if (Math.abs(right - left) > 1) {
+            return -1;
+        }
+
+        return Math.max(left, right) + 1;
+    }
+
     // Display tree
     public void display() {
         display(root, 0);

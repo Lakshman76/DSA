@@ -34,6 +34,8 @@ public class DFSMain {
 
         // dfs.maxPathSum();
 
-        dfs.longestUnivaluePath();
+        // dfs.longestUnivaluePath();
+
+        dfs.isBalanced();
     }
 }
