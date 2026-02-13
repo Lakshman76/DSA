@@ -1,10 +1,9 @@
+import java.util.Collections;
 import java.util.PriorityQueue;
-
 public class HeapInterview {
 
     // find height of heap
     static int heapHeight(int n, int arr[]) {
-        // code here
         if (n == 1)
             return 1;
 
@@ -54,11 +53,34 @@ public class HeapInterview {
         return ans;
     }
 
+    // Take Gifts From the Richest Pile
+    public static long pickGifts(int[] gifts, int k) {
+        PriorityQueue<Integer> pq = new PriorityQueue<>(Collections.reverseOrder());
+        for (int gift : gifts) {
+            pq.offer(gift);
+        }
+        while (k > 0) {
+            int num = pq.poll();
+            int sqrt = (int) Math.sqrt(num);
+            pq.offer(sqrt);
+            k--;
+        }
+
+        long sum = 0;
+        while (!pq.isEmpty()) {
+            sum += pq.poll();
+        }
+
+        return sum;
+    }
+
     public static void main(String[] args) {
-        int[] arr = { 1, 3, 6, 5, 9, 8 };
+        int[] arr = { 25, 64, 9, 4, 100 };
 
-        System.out.println(heapHeight(arr.length, arr));
+        // System.out.println(heapHeight(arr.length, arr));
 
-        System.out.println(minCost(arr));
+        // System.out.println(minCost(arr));
+
+        System.out.println(pickGifts(arr, 4));
     }
 }
