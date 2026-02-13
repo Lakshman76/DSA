@@ -74,13 +74,54 @@ public class HeapInterview {
         return sum;
     }
 
+    // Sum of elements between k1'th and k2'th smallest elements
+    public static long sumBetweenTwoKth(long A[], long N, long K1, long K2) {
+
+        PriorityQueue<Long> pq1 = new PriorityQueue<>(Collections.reverseOrder());
+        PriorityQueue<Long> pq2 = new PriorityQueue<>(Collections.reverseOrder());
+
+        for (int i = 0; i < N; i++) {
+            if (pq1.size() >= K1) {
+                if (A[i] < pq1.peek()) {
+                    pq1.poll();
+                    pq1.offer(A[i]);
+                }
+            } else {
+                pq1.offer(A[i]);
+            }
+
+            if (pq2.size() >= K2 - 1) {
+                if (A[i] < pq2.peek()) {
+                    pq2.poll();
+                    pq2.offer(A[i]);
+                }
+            } else {
+                pq2.offer(A[i]);
+            }
+        }
+
+        long sum1 = 0;
+        while (!pq1.isEmpty()) {
+            sum1 += pq1.poll();
+        }
+
+        long sum2 = 0;
+        while (!pq2.isEmpty()) {
+            sum2 += pq2.poll();
+        }
+
+        return (sum2 - sum1);
+    }
+
     public static void main(String[] args) {
-        int[] arr = { 25, 64, 9, 4, 100 };
+        long[] arr = { 10, 2, 50, 12, 48, 13 };
 
         // System.out.println(heapHeight(arr.length, arr));
 
         // System.out.println(minCost(arr));
 
-        System.out.println(pickGifts(arr, 4));
+        // System.out.println(pickGifts(arr, 4));
+
+        System.out.println(sumBetweenTwoKth(arr, arr.length, 2, 6));
     }
 }
