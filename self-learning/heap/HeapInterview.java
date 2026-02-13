@@ -113,8 +113,28 @@ public class HeapInterview {
         return (sum2 - sum1);
     }
 
+    // Kth Largest in a Stream
+    public static int[] kthLargest(int k, int[] arr, int n) {
+        int[] ans = new int[n];
+
+        PriorityQueue<Integer> pq = new PriorityQueue<>();
+
+        for (int i = 0; i < n; i++) {
+            pq.offer(arr[i]);
+            if (pq.size() == k) {
+                ans[i] = pq.peek();
+            } else if (pq.size() > k) {
+                pq.poll();
+                ans[i] = pq.peek();
+            } else {
+                ans[i] = -1;
+            }
+        }
+        return ans;
+    }
+
     public static void main(String[] args) {
-        long[] arr = { 10, 2, 50, 12, 48, 13 };
+        int[] arr = { 1, 2, 3, 4, 5, 6 };
 
         // System.out.println(heapHeight(arr.length, arr));
 
@@ -122,6 +142,12 @@ public class HeapInterview {
 
         // System.out.println(pickGifts(arr, 4));
 
-        System.out.println(sumBetweenTwoKth(arr, arr.length, 2, 6));
+        // System.out.println(sumBetweenTwoKth(arr, arr.length, 2, 6));
+
+        int[] ans = kthLargest(4, arr, 6);
+        for (int n : ans) {
+            System.out.print(n + "  ");
+        }
+        System.out.println();
     }
 }
