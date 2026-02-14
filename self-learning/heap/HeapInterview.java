@@ -133,8 +133,46 @@ public class HeapInterview {
         return ans;
     }
 
+    // Merge two binary Max heaps
+    public static int[] mergeHeaps(int[] a, int[] b, int n, int m) {
+        int[] merge = new int[n + m];
+
+        // System.arraycopy(source, sourceStartIndex, destination, destStartIndex,
+        // length)
+
+        System.arraycopy(a, 0, merge, 0, n);
+        System.arraycopy(b, 0, merge, n, m);
+
+        for (int i = (merge.length / 2) - 1; i >= 0; i--) {
+            stepDown(merge, i);
+        }
+        return merge;
+    }
+
+    private static void stepDown(int[] merge, int idx) {
+        int max = idx;
+        int left = 2 * idx + 1;
+        int right = 2 * idx + 2;
+
+        if (left < merge.length && merge[left] > merge[max]) {
+            max = left;
+        }
+
+        if (right < merge.length && merge[right] > merge[max]) {
+            max = right;
+        }
+
+        if (max != idx) {
+            int temp = merge[idx];
+            merge[idx] = merge[max];
+            merge[max] = temp;
+
+            stepDown(merge, max);
+        }
+
+    }
     public static void main(String[] args) {
-        int[] arr = { 1, 2, 3, 4, 5, 6 };
+        // int[] arr = { 1, 2, 3, 4, 5, 6 };
 
         // System.out.println(heapHeight(arr.length, arr));
 
@@ -144,8 +182,16 @@ public class HeapInterview {
 
         // System.out.println(sumBetweenTwoKth(arr, arr.length, 2, 6));
 
-        int[] ans = kthLargest(4, arr, 6);
-        for (int n : ans) {
+        // int[] ans = kthLargest(4, arr, 6);
+        // for (int n : ans) {
+        // System.out.print(n + " ");
+        // }
+        // System.out.println();
+
+        int a[] = { 10, 5, 6, 2 };
+        int b[] = { 12, 7, 9 };
+        int[] mergeHeaps = mergeHeaps(a, b, a.length, b.length);
+        for (int n : mergeHeaps) {
             System.out.print(n + "  ");
         }
         System.out.println();
