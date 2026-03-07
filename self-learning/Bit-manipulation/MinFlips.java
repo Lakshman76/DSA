@@ -1,33 +1,58 @@
 // 1888. Minimum Number of Flips to Make the Binary String Alternating
 
 public class MinFlips {
-    static int findMin(StringBuilder sb, int start, int end) {
-        int ptrn1 = 0; // start with 0
-        int ptrn2 = 0; // start with 1
-        int idx = 0;
-        for (int i = start; i < end; i++) {
-            char ch = sb.charAt(i);
-            char expected1 = idx % 2 == 0 ? '0' : '1';
-            char expected2 = idx % 2 == 0 ? '1' : '0';
 
-            if (ch != expected1)
-                ptrn1++;
-            if (ch != expected2)
-                ptrn2++;
-            idx++;
-        }
-        return Math.min(ptrn1, ptrn2);
-    }
-
+    // time - O(n)
+    // space - O(n)
     static int minFlips(String s) {
-        StringBuilder sb = new StringBuilder(s);
-        sb.append(s);
-        int ans = Integer.MAX_VALUE;
-        for (int i = 0; i < s.length(); i++) {
-            int val = findMin(sb, i, s.length() + i);
-            System.out.println(val);
-            ans = Math.min(ans, val);
+        String window = s + s;
+
+        // generate pattern
+        StringBuilder ptrn1 = new StringBuilder(); // start with 0
+        StringBuilder ptrn2 = new StringBuilder();// start with 1
+        for (int i = 0; i < 2 * s.length(); i++) {
+            if (i % 2 == 0) {
+                ptrn1.append("0");
+                ptrn2.append("1");
+            } else {
+                ptrn1.append("1");
+                ptrn2.append("0");
+            }
         }
+
+        // using sliding window
+
+        int low = 0;
+        int high = 0;
+        int p1 = 0;
+        int p2 = 0;
+        while (high < s.length()) {
+            if (window.charAt(high) != ptrn1.charAt(high)) {
+                p1++;
+            }
+            if (window.charAt(high) != ptrn2.charAt(high)) {
+                p2++;
+            }
+            high++;
+        }
+        int ans = Math.min(p1, p2);
+        // System.out.println(p1 + "\t" + p2);
+        while (high < window.length() && low < s.length()) {
+            if (window.charAt(low) != ptrn1.charAt(low))
+                p1--;
+            if (window.charAt(low) != ptrn2.charAt(low))
+                p2--;
+
+            if (window.charAt(high) != ptrn1.charAt(high))
+                p1++;
+            if (window.charAt(high) != ptrn2.charAt(high))
+                p2++;
+
+            ans = Math.min(ans, Math.min(p1, p2));
+            low++;
+            high++;
+        }
+
         return ans;
     }
 
