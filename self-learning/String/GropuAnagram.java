@@ -23,9 +23,40 @@ public class GropuAnagram {
         return new ArrayList<>(map.values());
     }
 
+    // optimized Solution
+    static List<List<String>> groupAnagramsOptimised(String[] strs) {
+        HashMap<String, List<String>> map = new HashMap<>();
+
+        for (String str : strs) {
+            int[] count = new int[26];
+
+            // count frequency of each character
+            for (char c : str.toCharArray()) {
+                count[c - 'a']++;
+            }
+
+            // build key from frequency array
+            StringBuilder keyBuilder = new StringBuilder();
+            for (int num : count) {
+                keyBuilder.append(num).append('#');
+            }
+
+            String key = keyBuilder.toString();
+            System.out.println(key);
+
+            // insert into map
+            if (!map.containsKey(key)) {
+                map.put(key, new ArrayList<>());
+            }
+
+            map.get(key).add(str);
+        }
+
+        return new ArrayList<>(map.values());
+    }
     public static void main(String[] args) {
-        String[] strs = { "eat", "tea", "tan", "ate", "nat", "bat" };
-        List<List<String>> ans = groupAnagrams(strs);
+        String[] strs = { "eat", "tea", "tan", "ate", "nat", "bat", "mam", "mma" };
+        List<List<String>> ans = groupAnagramsOptimised(strs);
         for (int i = 0; i < ans.size(); i++) {
             System.out.println(ans.get(i));
         }
