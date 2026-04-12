@@ -1,3 +1,5 @@
+// 57. Insert Interval
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -58,10 +60,42 @@ public class InsertInterval {
         return merge(ans);
     }
 
+    static int[][] insertOptimized(int[][] intervals, int[] newInterval) {
+        ArrayList<int[]> result = new ArrayList<>();
+        int i = 0;
+        int n = intervals.length;
+
+        // Add all intervals
+        while (i < n && intervals[i][1] < newInterval[0]) {
+            result.add(intervals[i]);
+            i++;
+        }
+
+        // Merge overlapping intervals
+        while (i < n && intervals[i][0] <= newInterval[1]) {
+            newInterval[0] = Math.min(newInterval[0], intervals[i][0]);
+            newInterval[1] = Math.max(newInterval[1], intervals[i][1]);
+            i++;
+        }
+        result.add(newInterval);
+
+        // Add remaining intervals
+        while (i < n) {
+            result.add(intervals[i]);
+            i++;
+        }
+
+        int[][] ans = new int[result.size()][2];
+        for (int j = 0; j < result.size(); j++) {
+            ans[j] = result.get(j);
+        }
+
+        return ans;
+    }
     public static void main(String[] args) {
         int[][] intervals = { { 1, 2 }, { 3, 5 }, { 6, 7 }, { 8, 10 }, { 12, 16 } };
         int[] newInterval = { 4, 8 };
-        int[][] ans = insert(intervals, newInterval);
+        int[][] ans = insertOptimized(intervals, newInterval);
         for (int i = 0; i < ans.length; i++) {
             for (int j = 0; j < ans[0].length; j++) {
                 System.out.print(ans[i][j] + "  ");
