@@ -19,8 +19,15 @@ public class SetBitPos {
         return setBitPos;
     }
 
+    static int findPositionOptimized(int n) {
+        if (n > 0 && (n & (n - 1)) == 0) {
+            return Integer.numberOfTrailingZeros(n) + 1;
+        }
+        return -1;
+    }
+
     public static void main(String[] args) {
-        int n = 8;
-        System.out.println(findPosition(n));
+        int n = 5;
+        System.out.println(findPositionOptimized(n));
     }
 }
