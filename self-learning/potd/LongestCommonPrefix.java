@@ -1,4 +1,5 @@
 // 3043. Find the Length of the Longest Common Prefix
+import java.util.HashSet;
 
 public class LongestCommonPrefix {
 
@@ -30,9 +31,32 @@ public class LongestCommonPrefix {
         return ans;
     }
 
+    static int longestCommonPrefixOptimize(int[] arr1, int[] arr2) {
+        HashSet<String> set = new HashSet<>();
+        for (int i = 0; i < arr1.length; i++) {
+            String s1 = Integer.toString(arr1[i]);
+            for (int j = 1; j <= s1.length(); j++) {
+                set.add(s1.substring(0, j));
+            }
+        }
+        int ans = 0;
+        for (int i = 0; i < arr2.length; i++) {
+            String s2 = Integer.toString(arr2[i]);
+            for (int j = 1; j <= s2.length(); j++) {
+                String str = s2.substring(0, j);
+                if (set.contains(str)) {
+                    ans = Math.max(ans, j);
+                } else {
+                    break;
+                }
+            }
+        }
+        return ans;
+    }
+
     public static void main(String[] args) {
         int[] arr1 = { 1, 10, 100 };
         int[] arr2 = { 1000 };
-        System.out.println(longestCommonPrefix(arr1, arr2));
+        System.out.println(longestCommonPrefixOptimize(arr1, arr2));
     }
 }
