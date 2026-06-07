@@ -36,7 +36,17 @@ public class FindingProfession {
             return "Doctor";
     }
 
+    // Time - O(1) & Space - O(1)
+    static String professionOptimized2(int level, int pos) {
+        int totalFlip = Integer.bitCount(pos - 1);
+
+        if (totalFlip % 2 == 0)
+            return "Engineer";
+        else
+            return "Doctor";
+    }
+
     public static void main(String[] args) {
-        System.out.println(professionOptimized1(4, 2));
+        System.out.println(professionOptimized2(4, 2));
     }
 }
