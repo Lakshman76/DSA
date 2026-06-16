@@ -14,9 +14,21 @@ public class SticklerThief {
         memo[i] = Math.max(arr[i] + dp(i - 2, arr, memo), dp(i - 1, arr, memo));
         return memo[i];
     }
-    static int findMaxSum(int arr[]) {
+
+    static int findMaxSumdp(int arr[]) {
         int [] memo = new int[arr.length];
         return dp(arr.length - 1, arr, memo);
+    }
+
+    static int findMaxSum(int arr[]) {
+        int prev2 = arr[0];
+        int prev1 = Math.max(arr[0], arr[1]);
+        for (int i = 2; i < arr.length; i++) {
+            int curr = Math.max(arr[i] + prev2, prev1);
+            prev2 = prev1;
+            prev1 = curr;
+        }
+        return prev1;
     }
     public static void main(String[] args) {
         int[] arr = {12, 5, 6, 13, 9, 6, 9, 7, 7};
