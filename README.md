@@ -9,9 +9,18 @@
 ## Hash Table
 |  |
 | ------- |
+| [0017-letter-combinations-of-a-phone-number](https://github.com/Lakshman76/DSA/tree/master/0017-letter-combinations-of-a-phone-number) |
 | [0036-valid-sudoku](https://github.com/Lakshman76/DSA/tree/master/0036-valid-sudoku) |
 ## Matrix
 |  |
 | ------- |
 | [0036-valid-sudoku](https://github.com/Lakshman76/DSA/tree/master/0036-valid-sudoku) |
+## String
+|  |
+| ------- |
+| [0017-letter-combinations-of-a-phone-number](https://github.com/Lakshman76/DSA/tree/master/0017-letter-combinations-of-a-phone-number) |
+## Backtracking
+|  |
+| ------- |
+| [0017-letter-combinations-of-a-phone-number](https://github.com/Lakshman76/DSA/tree/master/0017-letter-combinations-of-a-phone-number) |
 <!---LeetCode Topics End-->
